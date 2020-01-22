@@ -34,19 +34,7 @@
         getTweets();
 //could not get "getTweets()" to work inside of SetInterval TODO
         setInterval(function(){
-          var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-         //add time stamp here
-         let today = new Date();
-          let date = (today.getMonth()+1)+'/'+today.getDate();
-          let time = today.getHours() + ":" + today.getMinutes();
-          let dateTime = ' tweeted at: ' + date+' '+time;
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + dateTime );
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+          getTweets();
         },100000);
 
         //setInterval(getTweets();,1000);
