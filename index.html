@@ -3,15 +3,20 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/main.css">
   </head>
   <body>
     <script>
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
 
-        var index = streams.home.length - 1;
+      $(document).ready(function(){
+
+        // Given
+        var $body = $('body');
+        // $body.html('');
+
+        function getTweets() { //I added function
+          var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div></div>');
@@ -19,9 +24,29 @@
           $tweet.appendTo($body);
           index -= 1;
         }
+          // End Given
+      }
+        getTweets();
+//could not get "getTweets()" to work inside of SetInterval TODO
+        setInterval(function(){
+          var index = streams.home.length - 1;
+        while(index >= 0){
+          var tweet = streams.home[index];
+          var $tweet = $('<div></div>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.appendTo($body);
+          index -= 1;
+        }
+        },3000000);
+
+        //setInterval(getTweets();,1000);
 
       });
 
     </script>
+
+    <!-- Main Page -->
+    <!-- <button type="button">Refresh</button> -->
+    <p> testing css</p>
   </body>
 </html>
