@@ -8,8 +8,6 @@
   </head>
   <body>
     <script>
-
-
       $(document).ready(function(){
 
 
@@ -28,29 +26,49 @@
           let date = (today.getMonth()+1)+'/'+today.getDate()+'/' + today.getFullYear();
           let time = today.getHours() + ":" + today.getMinutes();
           let dateTime = '  --- sent on: ' + date+' at: '+time;
-          $tweet.text('@' + tweet.user + ': ' + tweet.message + dateTime );
-          console.log(tweet.user, tweet.message, dateTime);
+
+          let linkUser = tweet.user;
+
+          $tweet.text('@' + linkUser + ': ' + tweet.message + dateTime );
           $tweet.appendTo('.feed');
-          msgHistory[tweet.user] = [`${tweet.message} --- sent on: ${date} at: ${time}`];
+          if(!(msgHistory.hasOwnProperty(tweet.user))) {
+            msgHistory[tweet.user] = [`${tweet.message} --- sent on: ${date} at: ${time}`];
+          } else {
+            msgHistory[tweet.user].push(`${tweet.message} --- sent on: ${date} at: ${time}`);
+          }
           console.log(msgHistory);
           index -= 1;
           }
         }
         function getHistory() {
-          get()
+          let arrayToProcess = msgHistory[linkUser];
+          for (i = 0; i < arrayToProcess.length; i++) {
+            arrayToProcess[i].appendTo('.history');
+          }
         }
+
+        function helloWorld() {
+          let hw = "Hello World";
+          console.log('Hello World');
+          return hw;
+
+        }
+
 
 
       //main
         getTweets();
-        setInterval( getTweets, 100000);
+        setInterval( getTweets, 1000000);
+
 
       });
 
+
+
+
     </script>
 
-    <!-- Main Page -->
-    <!-- <button type="button">Refresh</button> -->
+
 
 <div class="grid">
   <div class="title">
@@ -61,6 +79,8 @@
   </div>
   <div class="history">
     <h2>History</h2>
+    <p id=list-history>
+    </p>
   </div>
 </div>
   </body>
