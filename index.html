@@ -29,6 +29,17 @@
 
           let linkUser = tweet.user;
 
+          //what do we know?
+          //onclick run getHistory
+          //need to understand appendTo()
+          //getHistory requires i send it linkUser which must be tweet.user
+          //formatting should happen in tweet.text
+          //use anchor text to wrap linkUser (variable probably not needed) and onclick fire off the function.
+          //the function should take care of everything else.
+          //<a href="javascript:someFunction()">LINK</a>
+
+
+
           $tweet.text('@' + linkUser + ': ' + tweet.message + dateTime );
           $tweet.appendTo('.feed');
           if(!(msgHistory.hasOwnProperty(tweet.user))) {
@@ -40,11 +51,14 @@
           index -= 1;
           }
         }
-        function getHistory() {
-          let arrayToProcess = msgHistory[linkUser];
+
+
+        function getHistory(user) {
+          let arrayToProcess = msgHistory[user];
           for (i = 0; i < arrayToProcess.length; i++) {
             arrayToProcess[i].appendTo('.history');
           }
+
         }
 
         function helloWorld() {
@@ -80,6 +94,7 @@
   <div class="history">
     <h2>History</h2>
     <p id=list-history>
+
     </p>
   </div>
 </div>
