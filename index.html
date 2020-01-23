@@ -13,8 +13,10 @@
       $(document).ready(function(){
 
 
-        var $body = $('body');
+        //var $body = $('body');
         // $body.html('');  -- given, not sure what it's for but was told it causes problems.
+
+        let msgHistory = {};
 
         function getTweets() {
           var index = streams.home.length - 1;
@@ -27,10 +29,19 @@
           let time = today.getHours() + ":" + today.getMinutes();
           let dateTime = '  --- sent on: ' + date+' at: '+time;
           $tweet.text('@' + tweet.user + ': ' + tweet.message + dateTime );
-          $tweet.appendTo($body);
+          console.log(tweet.user, tweet.message, dateTime);
+
+
+          $tweet.appendTo('.feed');
           index -= 1;
+          }
         }
-      }
+        function getHistory() {
+          get()
+        }
+
+
+      //main
         getTweets();
         setInterval( getTweets, 100000);
 
@@ -51,13 +62,6 @@
   <div class="history">
     <h2>History</h2>
   </div>
-
-
-  <!-- <div class="box c">C</div>
-  <div class="box d">D</div>
-  <div class="box e">E</div>
-  <div class="box f">F</div>
-  <div class="box g">G</div> -->
 </div>
   </body>
 </html>

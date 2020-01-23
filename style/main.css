@@ -24,10 +24,10 @@ body {
   grid-area: 1 / 1 / span 3 / span 2;
 }
 
-.feed {
+.history {
   grid-area: 4 / 1 / auto / span 1;
 }
 
-.history {
+.feed {
   grid-area: 4 / 2 / auto / span 1;
 }
