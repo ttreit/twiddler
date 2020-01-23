@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="style/main.css">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-    <link rel="stylesheet" type="text/css" href="style/main.css">
+    <title>Twiddler - ttreit</title>
   </head>
   <body>
     <script>
@@ -31,16 +32,32 @@
         }
       }
         getTweets();
-//could not get "getTweets()" to work inside of SetInterval TODO
-        setInterval(function(){
-          getTweets();
-        },100000);
+        setInterval( getTweets, 100000);
+
       });
 
     </script>
 
     <!-- Main Page -->
     <!-- <button type="button">Refresh</button> -->
-    <p> testing css</p>
+
+<div class="grid">
+  <div class="title">
+    <h1>Twiddler!</h1>
+  </div>
+  <div class="feed">
+    <h2>Feed</h2>
+  </div>
+  <div class="history">
+    <h2>History</h2>
+  </div>
+
+
+  <!-- <div class="box c">C</div>
+  <div class="box d">D</div>
+  <div class="box e">E</div>
+  <div class="box f">F</div>
+  <div class="box g">G</div> -->
+</div>
   </body>
 </html>
