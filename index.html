@@ -30,9 +30,9 @@
           let dateTime = '  --- sent on: ' + date+' at: '+time;
           $tweet.text('@' + tweet.user + ': ' + tweet.message + dateTime );
           console.log(tweet.user, tweet.message, dateTime);
-
-
           $tweet.appendTo('.feed');
+          msgHistory[tweet.user] = [`${tweet.message} --- sent on: ${date} at: ${time}`];
+          console.log(msgHistory);
           index -= 1;
           }
         }
