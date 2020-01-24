@@ -4,17 +4,26 @@
     <link rel="stylesheet" type="text/css" href="style/main.css">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="script.js"></script>
     <title>Twiddler - ttreit</title>
   </head>
   <body>
     <script>
+
       $(document).ready(function(){
-
-
         //var $body = $('body');
         // $body.html('');  -- given, not sure what it's for but was told it causes problems.
 
+        //<A HREF="javascript:anchor_test()">Test</a>
+        //<a href="javascript:someFunction()">LINK</a>
+
         let msgHistory = {};
+        function getHistory() {
+          let arrayToProcess = msgHistory[sharksforcheap];
+          for (i = 0; i < arrayToProcess.length; i++) {
+            arrayToProcess[i].appendTo('.history');
+          }
+        }
 
         function getTweets() {
           var index = streams.home.length - 1;
@@ -26,21 +35,8 @@
           let date = (today.getMonth()+1)+'/'+today.getDate()+'/' + today.getFullYear();
           let time = today.getHours() + ":" + today.getMinutes();
           let dateTime = '  --- sent on: ' + date+' at: '+time;
-
           let linkUser = tweet.user;
-
-          //what do we know?
-          //onclick run getHistory
-          //need to understand appendTo()
-          //getHistory requires i send it linkUser which must be tweet.user
-          //formatting should happen in tweet.text
-          //use anchor text to wrap linkUser (variable probably not needed) and onclick fire off the function.
-          //the function should take care of everything else.
-          //<a href="javascript:someFunction()">LINK</a>
-
-
-
-          $tweet.text('@' + linkUser + ': ' + tweet.message + dateTime );
+          $tweet.html(`@<a href='javascript:getHistory()'>${linkUser}</a>: ${tweet.message} ${dateTime}`);
           $tweet.appendTo('.feed');
           if(!(msgHistory.hasOwnProperty(tweet.user))) {
             msgHistory[tweet.user] = [`${tweet.message} --- sent on: ${date} at: ${time}`];
@@ -49,24 +45,11 @@
           }
           console.log(msgHistory);
           index -= 1;
+
+
           }
         }
 
-
-        function getHistory(user) {
-          let arrayToProcess = msgHistory[user];
-          for (i = 0; i < arrayToProcess.length; i++) {
-            arrayToProcess[i].appendTo('.history');
-          }
-
-        }
-
-        function helloWorld() {
-          let hw = "Hello World";
-          console.log('Hello World');
-          return hw;
-
-        }
 
 
 
@@ -77,16 +60,14 @@
 
       });
 
-
-
-
     </script>
-
-
 
 <div class="grid">
   <div class="title">
     <h1>Twiddler!</h1>
+    <p>
+
+    </p>
   </div>
   <div class="feed">
     <h2>Feed</h2>
@@ -100,3 +81,12 @@
 </div>
   </body>
 </html>
+
+<!-- //what do we know?
+//onclick run getHistory
+//need to understand appendTo()
+//getHistory requires i send it linkUser which must be tweet.user
+//formatting should happen in tweet.text
+//use anchor text to wrap linkUser (variable probably not needed) and onclick fire off the function.
+//the function should take care of everything else.
+//<a href="javascript:someFunction()">LINK</a> -->
