@@ -1,65 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="style/main.css">
     <script src="jquery.js"></script>
-    <script src="data_generator.js"></script>
     <script src="script.js"></script>
+    <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/main.css">
     <title>Twiddler - ttreit</title>
   </head>
   <body>
     <script>
-
-      $(document).ready(function(){
-        //var $body = $('body');
-        // $body.html('');  -- given, not sure what it's for but was told it causes problems.
-
-        //<A HREF="javascript:anchor_test()">Test</a>
-        //<a href="javascript:someFunction()">LINK</a>
-
-        let msgHistory = {};
-        function getHistory() {
-          let arrayToProcess = msgHistory[sharksforcheap];
-          for (i = 0; i < arrayToProcess.length; i++) {
-            arrayToProcess[i].appendTo('.history');
-          }
-        }
-
-        function getTweets() {
-          var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          //add time stamp here
-          let today = new Date();
-          let date = (today.getMonth()+1)+'/'+today.getDate()+'/' + today.getFullYear();
-          let time = today.getHours() + ":" + today.getMinutes();
-          let dateTime = '  --- sent on: ' + date+' at: '+time;
-          let linkUser = tweet.user;
-          $tweet.html(`@<a href='javascript:getHistory()'>${linkUser}</a>: ${tweet.message} ${dateTime}`);
-          $tweet.appendTo('.feed');
-          if(!(msgHistory.hasOwnProperty(tweet.user))) {
-            msgHistory[tweet.user] = [`${tweet.message} --- sent on: ${date} at: ${time}`];
-          } else {
-            msgHistory[tweet.user].push(`${tweet.message} --- sent on: ${date} at: ${time}`);
-          }
-          console.log(msgHistory);
-          index -= 1;
-
-
-          }
-        }
-
-
-
-
-      //main
-        getTweets();
-        setInterval( getTweets, 1000000);
-
-
-      });
-
+        $(document).ready(function(){
+          getTweets();
+          setInterval(getTweets, 100000);
+        });
     </script>
 
 <div class="grid">
